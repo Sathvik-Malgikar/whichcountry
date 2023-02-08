@@ -2,8 +2,7 @@ from flask import Flask , send_from_directory, request
 from flask_cors import CORS,cross_origin
 app = Flask(__name__ , static_folder="./build/")
 import json
-from enchant.utils import levenshtein
-
+from Levenshtein import distance as lev
 
 cors = CORS(app)
 
@@ -57,16 +56,16 @@ def check():
             if item["country"] == dcountry:
                 if(type(item["capital"]) == str):
                     truecapital = item["capital"]
-                    edit_dist = levenshtein(dcapital ,truecapital )
+                    edit_dist = lev(dcapital ,truecapital )
                 else:
                     edit_dist = 999999999
                     for cap in item["capital"]:
                         truecapital = cap
-                        if(levenshtein(dcapital ,truecapital )<edit_dist):
-                            edit_dist = levenshtein(dcapital ,truecapital )
+                        if(lev(dcapital ,truecapital )<edit_dist):
+                            edit_dist = lev(dcapital ,truecapital )
                 
     
-    # edit_dist = levenshtein(dcapital ,truecapital )
+    # edit_dist = lev(dcapital ,truecapital )
     print ( "distance" , edit_dist)
     
     # # logic
