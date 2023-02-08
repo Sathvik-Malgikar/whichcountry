@@ -34,8 +34,8 @@ def newentry(   ):
         
     return "added new entry"
     
-
-@app.route("/static/data")
+@cross_origin()
+@app.route("/static/data/")
 def home():
     
     with open("./static/data.json") as f:
@@ -43,6 +43,7 @@ def home():
     
     return data
 
+@cross_origin()
 @app.route("/check/")
 def check():
     dcountry = request.args["country"]
