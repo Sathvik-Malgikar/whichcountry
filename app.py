@@ -1,6 +1,6 @@
 from flask import Flask , send_from_directory, request
 from flask_cors import CORS,cross_origin
-app = Flask(__name__ , static_folder="./static/")
+app = Flask(__name__ , static_folder="./build/")
 import json
 from enchant.utils import levenshtein
 
@@ -77,4 +77,4 @@ def check():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False , host="0.0.0.0")
